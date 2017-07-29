@@ -107,8 +107,13 @@ class TwitterAPIExchange
      *
      * @return TwitterAPIExchange Instance of self for method chaining
      */
-    public function setPostfields(array $array)
+    public function setPostfields(array $array = null)
     {
+        if (is_null($array)) {
+            $this->postfields = $array;
+            return $this;
+        }
+
         if (!is_null($this->getGetfield()))
         {
             throw new Exception('You can only choose get OR post fields (post fields include put).');
@@ -147,8 +152,13 @@ class TwitterAPIExchange
      *
      * @return \TwitterAPIExchange Instance of self for method chaining
      */
-    public function setGetfield($string)
+    public function setGetfield($string = null)
     {
+        if (is_null($string)) {
+            $this->getfield = $string;
+            return $this;
+        }
+
         if (!is_null($this->getPostfields()))
         {
             throw new Exception('You can only choose get OR post / post fields.');
